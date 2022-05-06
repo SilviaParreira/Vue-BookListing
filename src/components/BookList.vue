@@ -4,12 +4,14 @@
         <ul>
             <book-item v-for="book in books" :book="book" :key="book.title"></book-item>
         </ul>
+        <book-form @addBook='appendBook'></book-form>
     </div>
 </template>
 
 <script>
     import BookItem from './BookItem';
-    
+    import BookForm from './BookForm';
+
     export default {
         name: 'BookList',
         data(){
@@ -22,8 +24,13 @@
                 ]
             }
         },
+        methods: {
+            appendBook(bookTitle, bookAuthor) {
+                this.books.push({ title: bookTitle, author: bookAuthor })
+            }
+        },
         components: {
-            BookItem
+            BookItem, BookForm
         }
     }
 </script>
